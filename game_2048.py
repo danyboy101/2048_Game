@@ -47,8 +47,8 @@ def draw_board(win):
 
 def main():
     run = True
-    #pos = random.choice(grid)
-    s_1 = Square(11)
+    pos = random.choice(grid)
+    s_1 = Square(pos)
 
     while run:
 
