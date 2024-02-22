@@ -1,5 +1,6 @@
 import pygame
 import random
+import time
 
 from Square import *
 from constants import *
@@ -17,7 +18,7 @@ def draw_board(win):
 
 def main():
     run = True
-
+    
     while run:
 
         for event in pygame.event.get():
