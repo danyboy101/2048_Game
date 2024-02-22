@@ -1,6 +1,5 @@
 import pygame
 import random
-import time
 
 from Square import *
 from constants import *
@@ -27,6 +26,8 @@ def main():
                 break
 
         draw_board(WIN)
+        s = Square(5)
+        s.draw_square(WIN)
 
         pygame.display.update()
 
