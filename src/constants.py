@@ -1,0 +1,15 @@
+import pygame
+
+WIDTH, HEIGHT = 660, 660
+SQUARE_SIZE = 100
+PADDING = 10
+GRID_SIZE = 4 * SQUARE_SIZE + 5 * PADDING
+WIN = pygame.display.set_mode((WIDTH, HEIGHT))
+
+BG_COLOR = "white"
+DARK_GREY = (96, 96, 96)
+LIGHT_GREY = (192, 192, 192)
+COLOR_2 = (240, 234, 223)
+COLOR_4 = (224, 206, 166)
+COLOR_8 = (232, 147, 72)
+COLOR_16 = (212, 112, 55)
