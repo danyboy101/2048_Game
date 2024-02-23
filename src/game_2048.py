@@ -6,6 +6,7 @@ from constants import *
 pygame.init()
 pygame.display.set_caption("2048")
 
+
 def draw_board(win, square):
     win.fill(BG_COLOR)
     pygame.draw.rect(win, DARK_GREY, (100, 100, GRID_SIZE, GRID_SIZE))
@@ -14,6 +15,7 @@ def draw_board(win, square):
             pygame.draw.rect(win, LIGHT_GREY, (100 + PADDING + (PADDING + SQUARE_SIZE) * n, 
                     100 + PADDING + (PADDING + SQUARE_SIZE) * k, SQUARE_SIZE, SQUARE_SIZE))
     square.draw_square()
+
 
 def main():
     run = True

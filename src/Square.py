@@ -1,4 +1,5 @@
 from constants import *
+from Grid import *
 import random
 
 class Square:
@@ -12,38 +13,52 @@ class Square:
 
     """
     SPEED = 5
+    grid = Grid()
+
 
     def __init__(self, win, pos):
         self.win = win
         self.pos = pos
-        self.x = 100 + PADDING + (PADDING + SQUARE_SIZE) * (self.pos % 4)
-        self.y = 100 + PADDING + (PADDING + SQUARE_SIZE) * (self.pos // 4)
+        self.col = self.pos % 4
+        self.row = self.pos // 4
+        self.x = 100 + PADDING + (PADDING + SQUARE_SIZE) * self.col
+        self.y = 100 + PADDING + (PADDING + SQUARE_SIZE) * self.row
         self.exp = 0
         self.update_exp()
+        Square.grid.add(self)
+        print(Square.grid)
+
 
     def update_exp(self):
         self.exp += 1
         self.value = str(2 ** self.exp)
+
 
     def draw_square(self):
         pygame.draw.rect(self.win, COLOR_2, (self.x, self.y, SQUARE_SIZE, SQUARE_SIZE))
         nb = NB_FONT.render(self.value, 1, BLACK)
         self.win.blit(nb, (self.x + SQUARE_SIZE//2 - nb.get_rect()[2]//2, self.y + SQUARE_SIZE//2 - nb.get_rect()[3]//2))
 
+
     def move_right(self):
         self.x += Square.SPEED
     
+
     def move_left(self):
         self.x -= Square.SPEED
+
 
     def move_up(self):
         self.y -= Square.SPEED
 
+
     def move_down(self):
         self.y += Square.SPEED
 
+
     def movement(self):
         keys = pygame.key.get_pressed()
+
 
         if keys[pygame.K_UP]:
             self.move_up()
@@ -53,6 +68,7 @@ class Square:
             self.move_right()
         elif keys[pygame.K_LEFT]:
             self.move_left()
+
 
     def getAdj(self):
         pass
