@@ -1,7 +1,6 @@
 import pygame
 
 from Square import *
-from constants import *
 
 pygame.init()
 pygame.display.set_caption("2048")
@@ -27,10 +26,12 @@ def main():
                 break
 
         draw_board(WIN, s)
-        s.movement()
+        if pygame.KEYDOWN:
+            s.movement()
         
         pygame.display.update()
 
+    print(Square.grid)
     pygame.quit()
 
 if __name__ == "__main__":
