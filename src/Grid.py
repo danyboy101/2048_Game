@@ -1,9 +1,14 @@
+import random
+import Square
+from constants import WIN
+
 class Grid:
     def __init__(self):
         self.cells = [[0, 0, 0, 0],
                       [0, 0, 0, 0],
                       [0, 0, 0, 0],
                       [0, 0, 0, 0]]
+        self.available = list(range(16))
         
     
     def __str__(self):

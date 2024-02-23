@@ -18,8 +18,11 @@ def draw_board(win, square):
 
 def main():
     run = True
+    clock = pygame.time.Clock()
     s = Square(WIN, 5)
     while run:
+        clock.tick(60)
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False

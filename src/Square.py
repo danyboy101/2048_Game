@@ -77,14 +77,17 @@ class Square:
             self.row -= 1
             Square.grid.updatePos(self)
             self.move_up()
+
         elif keys[pygame.K_DOWN] and self.row < 3:
             self.row += 1
             Square.grid.updatePos(self)
             self.move_down()
+
         elif keys[pygame.K_RIGHT] and self.col < 3:
             self.col += 1
             Square.grid.updatePos(self)
             self.move_right()
+            
         elif keys[pygame.K_LEFT] and self.col > 0:
             self.col -= 1
             Square.grid.updatePos(self)
