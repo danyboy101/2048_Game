@@ -24,10 +24,11 @@ def main():
             if event.type == pygame.QUIT:
                 run = False
                 break
+            if pygame.KEYDOWN:
+                s.movement()
 
         draw_board(WIN, s)
-        if pygame.KEYDOWN:
-            s.movement()
+        
         
         pygame.display.update()
 
