@@ -8,7 +8,7 @@ pygame.init()
 pygame.display.set_caption("2048")
 
 def draw_board(win):
-    s = Square()
+    s = Square(5)
     win.fill(BG_COLOR)
     pygame.draw.rect(win, DARK_GREY, (100, 100, GRID_SIZE, GRID_SIZE))
     for n in range(4):

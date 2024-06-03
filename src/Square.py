@@ -3,8 +3,9 @@ import random
 
 
 class Square:
-    def __init__(self):
+    def __init__(self, pos):
         self.exp = 1
+        self.pos = pos
         #value = 2^self.exp
 
     def draw_square(self, win):
