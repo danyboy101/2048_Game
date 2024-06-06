@@ -1,13 +1,9 @@
-import pygame
-#import random
-
 from Square import *
-from constants import *
+import random
 
-pygame.init()
 pygame.display.set_caption("2048")
 
-def draw_board(win, s):
+def draw_board(win):
     
     win.fill(WHITE)
     pygame.draw.rect(win, DARK_GREY, (100, 100, GRID_SIZE, GRID_SIZE))
@@ -15,51 +11,61 @@ def draw_board(win, s):
         for k in range(4):
             pygame.draw.rect(win, LIGHT_GREY, (100 + PADDING + (PADDING + SQUARE_SIZE) * n, 
                                                100 + PADDING + (PADDING + SQUARE_SIZE) * k, SQUARE_SIZE, SQUARE_SIZE))
-    s.draw_square(win)
+    for sq in Square.grid.list:
+        if sq != 0:
+            sq.draw_square(win)
 
 def main():
     run = True
     clock = pygame.time.Clock()
-    s = Square(5)
-    moving = False
-
+    Square(0)
+    Square(5)
+    Square(10)
+    print(Square.grid)
+    
     while run:
         clock.tick(60)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
+                print(Square.grid)
                 break
 
             if pygame.KEYDOWN:
 
                 keys = pygame.key.get_pressed()
 
-                if keys[pygame.K_UP] and s.row != 0:
-                    s.row -= 1
-                elif keys[pygame.K_DOWN] and s.row != 3:
-                    s.row += 1
-                elif keys[pygame.K_LEFT] and s.col != 0:
-                    s.col -= 1 
-                elif keys[pygame.K_RIGHT] and s.col != 3:
-                    s.col += 1
+                for sq in Square.grid.list:
+                    if sq != 0:
+                        if keys[pygame.K_UP] and sq.row != 0:
+                            sq.row -= 1
+                        elif keys[pygame.K_DOWN] and sq.row != 3:
+                            sq.row += 1
+                        elif keys[pygame.K_LEFT] and sq.col != 0:
+                            sq.col -= 1 
+                        elif keys[pygame.K_RIGHT] and sq.col != 3:
+                            sq.col += 1
 
-        draw_board(WIN, s)
-        
-        if s.y > s.getY():
-            s.y -= SPEED
-        elif s.y < s.getY():
-            s.y += SPEED
-        elif s.x > s.getX():
-            s.x -= SPEED
-        elif s.x < s.getX():
-            s.x += SPEED
-        else:
-            s.updatePos()
+        draw_board(WIN)
+
+        for sq in Square.grid.list:
+            if sq != 0:
+                if sq.y > sq.getY():
+                    sq.y -= SPEED
+                elif sq.y < sq.getY():
+                    sq.y += SPEED
+                elif sq.x > sq.getX():
+                    sq.x -= SPEED
+                elif sq.x < sq.getX():
+                    sq.x += SPEED
+                else:
+                    sq.updatePos()
         
         pygame.display.update()
 
     pygame.quit()
+
 
 if __name__ == "__main__":
     main() 
