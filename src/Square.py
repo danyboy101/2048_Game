@@ -38,19 +38,30 @@ class Square:
 
 
     def canUp(self):
-        return self.row != 0 and Square.grid.list[self.pos - 4] == 0
+        for n in range(self.row):
+            if Square.grid.list[4*n + self.col] == 0:
+                return True 
+        return False
 
     
     def canDown(self):
-        return self.row != 3 and Square.grid.list[self.pos + 4] == 0
+        for n in range(self.row + 1, 4):
+            if Square.grid.list[4*n + self.col] == 0:
+                return True 
+        return False
 
 
     def canLeft(self):
-        return self.col != 0 and Square.grid.list[self.pos - 1] == 0
-
+        for n in range(self.col):
+            if Square.grid.list[self.pos + n - 3] == 0:
+                return True 
+        return False
 
     def canRight(self):
-        return self.col != 3 and Square.grid.list[self.pos + 1] == 0
+        for n in range(self.col + 1, 4):
+            if Square.grid.list[self.pos - n + 2] == 0:
+                return True 
+        return False
 
 
     def __str__(self):

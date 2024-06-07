@@ -1,6 +1,7 @@
 from Square import *
 import random
 
+
 pygame.display.set_caption("2048")
 
 def draw_board(win):
@@ -18,7 +19,6 @@ def draw_board(win):
 def main():
     run = True
     clock = pygame.time.Clock()
-    Square(0)
     Square(5)
     Square(10)
     print(Square.grid)
@@ -38,14 +38,18 @@ def main():
 
                 for sq in Square.grid.list:
                     if sq != 0:
-                        if keys[pygame.K_UP] and sq.row != 0:
-                            sq.row -= 1
-                        elif keys[pygame.K_DOWN] and sq.row != 3:
-                            sq.row += 1
-                        elif keys[pygame.K_LEFT] and sq.col != 0:
-                            sq.col -= 1 
-                        elif keys[pygame.K_RIGHT] and sq.col != 3:
-                            sq.col += 1
+                        if keys[pygame.K_UP]:
+                            while sq.canUp():
+                                sq.row -= 1
+                        elif keys[pygame.K_DOWN]:
+                            while sq.canDown():
+                                sq.row += 1
+                        elif keys[pygame.K_LEFT]:
+                            while sq.canLeft():
+                                sq.col -= 1 
+                        elif keys[pygame.K_RIGHT]:
+                            while sq.canRight():
+                                sq.col += 1
 
         draw_board(WIN)
 
