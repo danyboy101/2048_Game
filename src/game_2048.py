@@ -19,6 +19,7 @@ def draw_board(win):
 def main():
     run = True
     clock = pygame.time.Clock()
+    move = 0
     Square(5)
     Square(6)
     Square(9)
@@ -42,28 +43,32 @@ def main():
                         for col in range(4):
                             sq = Square.grid.list[row*4 + col]
                             if sq != 0:
-                                sq.moveUp()
+                                if sq.moveUp():
+                                    move += 1
                 
                 elif keys[pygame.K_DOWN]:
                     for row in range(2, -1, -1):
                         for col in range(4):
                             sq = Square.grid.list[row*4 + col]
                             if sq != 0:
-                                sq.moveDown()
+                                if sq.moveDown():
+                                    move += 1
 
                 elif keys[pygame.K_LEFT]:
                     for col in range(1, 4):
                         for row in range(4):
                             sq = Square.grid.list[row*4 + col]
                             if sq != 0:
-                                sq.moveLeft()
+                                if sq.moveLeft():
+                                    move += 1
 
                 elif keys[pygame.K_RIGHT]:
                     for col in range(2, -1, -1):
                         for row in range(4):
                             sq = Square.grid.list[row*4 + col]
                             if sq != 0:
-                                sq.moveRight()
+                                if sq.moveRight():
+                                    move += 1
 
         draw_board(WIN)
 

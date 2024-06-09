@@ -40,7 +40,8 @@ class Square:
             if Square.grid.list[row*4 + self.col] == 0:
                 self.row = row
                 self.updatePos()
-                break
+                return True
+        return False
 
     
     def moveDown(self):
@@ -48,15 +49,17 @@ class Square:
             if Square.grid.list[row*4 + self.col] == 0:
                 self.row = row
                 self.updatePos()
-                break
-
+                return True
+        return False
+    
 
     def moveLeft(self):
         for col in range(self.col):
             if Square.grid.list[4*self.row + col] == 0:
                 self.col = col
                 self.updatePos()
-                break
+                return True
+        return False
 
 
     def moveRight(self):
@@ -64,8 +67,9 @@ class Square:
             if Square.grid.list[4*self.row + col] == 0:
                 self.col = col
                 self.updatePos()
-                break
-
+                return True
+        return False
+    
 
     def __str__(self):
         return "Sq" + str(self.pos)
