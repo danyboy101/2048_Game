@@ -20,7 +20,7 @@ def main():
     run = True
     clock = pygame.time.Clock()
     Square(5)
-    Square(10)
+    Square(6)
     print(Square.grid)
     
     while run:
@@ -33,23 +33,35 @@ def main():
                 break
 
             if pygame.KEYDOWN:
-
                 keys = pygame.key.get_pressed()
 
-                for sq in Square.grid.list:
-                    if sq != 0:
-                        if keys[pygame.K_UP]:
-                            while sq.canUp():
-                                sq.row -= 1
-                        elif keys[pygame.K_DOWN]:
-                            while sq.canDown():
-                                sq.row += 1
-                        elif keys[pygame.K_LEFT]:
-                            while sq.canLeft():
-                                sq.col -= 1 
-                        elif keys[pygame.K_RIGHT]:
-                            while sq.canRight():
-                                sq.col += 1
+                if keys[pygame.K_UP]:
+                    for row in range(1, 4):
+                        for col in range(4):
+                            sq = Square.grid.list[row*4 + col]
+                            if sq != 0:
+                                sq.moveUp()
+                
+                elif keys[pygame.K_DOWN]:
+                    for row in range(2, -1, -1):
+                        for col in range(4):
+                            sq = Square.grid.list[row*4 + col]
+                            if sq != 0:
+                                sq.moveDown()
+
+                elif keys[pygame.K_LEFT]:
+                    for col in range(1, 4):
+                        for row in range(4):
+                            sq = Square.grid.list[row*4 + col]
+                            if sq != 0:
+                                sq.moveLeft()
+
+                elif keys[pygame.K_RIGHT]:
+                    for col in range(2, -1, -1):
+                        for row in range(4):
+                            sq = Square.grid.list[row*4 + col]
+                            if sq != 0:
+                                sq.moveRight()
 
         draw_board(WIN)
 
@@ -63,8 +75,7 @@ def main():
                     sq.x -= SPEED
                 elif sq.x < sq.getX():
                     sq.x += SPEED
-                else:
-                    sq.updatePos()
+                sq.updatePos()
         
         pygame.display.update()
 
