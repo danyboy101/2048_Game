@@ -21,6 +21,8 @@ def main():
     clock = pygame.time.Clock()
     Square(5)
     Square(6)
+    Square(9)
+    Square(10)
     print(Square.grid)
     
     while run:
