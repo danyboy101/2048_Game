@@ -19,6 +19,8 @@ def main():
     run = True
     clock = pygame.time.Clock()
 
+    move, temp = 0, 0
+
     Square.createNew()
     Square.createNew()
     print(Square.grid)
@@ -27,7 +29,7 @@ def main():
         clock.tick(60)
 
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:
+            if event.type == pygame.QUIT or not Square.grid.available:
                 run = False
                 print(Square.grid)
                 break
@@ -65,17 +67,25 @@ def main():
                 
         draw_board(WIN)
 
-        for sq in Square.grid.list:
-            if sq != 0:
-                if sq.y > sq.getY():
-                    sq.y -= SPEED
-                elif sq.y < sq.getY():
-                    sq.y += SPEED
-                elif sq.x > sq.getX():
-                    sq.x -= SPEED
-                elif sq.x < sq.getX():
-                    sq.x += SPEED        
-        
+        for sq in Square.grid.taken:
+            if sq.y > sq.getY():
+                sq.y -= SPEED
+            elif sq.y < sq.getY():
+                sq.y += SPEED
+            elif sq.x > sq.getX():
+                sq.x -= SPEED
+            elif sq.x < sq.getX():
+                sq.x += SPEED 
+            else:
+                sq.moving = False
+
+        if all(not sq.moving for sq in Square.grid.taken) and move != temp:
+            Square.createNew()
+            print(Square.grid.available)
+            temp = move
+        elif not all(not sq.moving for sq in Square.grid.taken) and move == temp:
+            move += 1
+            
         pygame.display.update()
 
     pygame.quit()

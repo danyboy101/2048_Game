@@ -14,6 +14,7 @@ class Square:
         self.x = self.getX()
         self.y = self.getY()
         self.exp = value
+        self.moving = False
         Square.grid.add(self)
 
 
@@ -46,6 +47,7 @@ class Square:
         for row in range(self.row):
             if Square.grid.list[row*4 + self.col] == 0:
                 self.row = row
+                self.moving = True
                 self.updatePos()
                 return True
         return False
@@ -55,6 +57,7 @@ class Square:
         for row in range(3, self.row, -1):
             if Square.grid.list[row*4 + self.col] == 0:
                 self.row = row
+                self.moving = True
                 self.updatePos()
                 return True
         return False
@@ -64,6 +67,7 @@ class Square:
         for col in range(self.col):
             if Square.grid.list[4*self.row + col] == 0:
                 self.col = col
+                self.moving = True
                 self.updatePos()
                 return True
         return False
@@ -73,6 +77,7 @@ class Square:
         for col in range(3, self.col, -1):
             if Square.grid.list[4*self.row + col] == 0:
                 self.col = col
+                self.moving = True
                 self.updatePos()
                 return True
         return False
