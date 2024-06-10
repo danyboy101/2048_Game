@@ -1,19 +1,26 @@
 from constants import *
 from Grid import *
+import random
 
 
 class Square:
     grid = Grid()
 
-    def __init__(self, pos):
+    def __init__(self, pos, value):
         self.exp = 1
         self.pos = pos
         self.col = self.pos % 4
         self.row = self.pos // 4
         self.x = self.getX()
         self.y = self.getY()
-        self.exp = 2
+        self.exp = value
         Square.grid.add(self)
+
+
+    def createNew():
+        randPos = random.choice(Square.grid.available)
+        initValue = random.choices([2, 4], weights=[9, 1])
+        Square(randPos, initValue[0])
 
 
     def getX(self):
@@ -30,7 +37,7 @@ class Square:
 
 
     def draw_square(self, win):
-        pygame.draw.rect(win, COLOR_2, (self.x, self.y, SQUARE_SIZE, SQUARE_SIZE))
+        pygame.draw.rect(win, COLORS[self.exp], (self.x, self.y, SQUARE_SIZE, SQUARE_SIZE))
         nb = NB_FONT.render(str(self.exp), 1, BLACK)
         win.blit(nb, (self.x + SQUARE_SIZE//2 - nb.get_rect()[2]//2, self.y + SQUARE_SIZE//2 - nb.get_rect()[3]//2))
 

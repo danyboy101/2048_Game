@@ -1,5 +1,4 @@
 from Square import *
-import random
 
 
 pygame.display.set_caption("2048")
@@ -19,11 +18,9 @@ def draw_board(win):
 def main():
     run = True
     clock = pygame.time.Clock()
-    move = 0
-    Square(5)
-    Square(6)
-    Square(9)
-    Square(10)
+
+    Square.createNew()
+    Square.createNew()
     print(Square.grid)
     
     while run:
@@ -43,33 +40,29 @@ def main():
                         for col in range(4):
                             sq = Square.grid.list[row*4 + col]
                             if sq != 0:
-                                if sq.moveUp():
-                                    move += 1
-                
+                                sq.moveUp()
+                                               
                 elif keys[pygame.K_DOWN]:
                     for row in range(2, -1, -1):
                         for col in range(4):
                             sq = Square.grid.list[row*4 + col]
                             if sq != 0:
-                                if sq.moveDown():
-                                    move += 1
-
+                                sq.moveDown()
+                                
                 elif keys[pygame.K_LEFT]:
                     for col in range(1, 4):
                         for row in range(4):
                             sq = Square.grid.list[row*4 + col]
                             if sq != 0:
-                                if sq.moveLeft():
-                                    move += 1
+                                sq.moveLeft()
 
                 elif keys[pygame.K_RIGHT]:
                     for col in range(2, -1, -1):
                         for row in range(4):
                             sq = Square.grid.list[row*4 + col]
                             if sq != 0:
-                                if sq.moveRight():
-                                    move += 1
-
+                                sq.moveRight()
+                
         draw_board(WIN)
 
         for sq in Square.grid.list:
@@ -81,8 +74,7 @@ def main():
                 elif sq.x > sq.getX():
                     sq.x -= SPEED
                 elif sq.x < sq.getX():
-                    sq.x += SPEED
-                sq.updatePos()
+                    sq.x += SPEED        
         
         pygame.display.update()
 
