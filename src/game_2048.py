@@ -23,7 +23,6 @@ def main():
 
     Square.createNew()
     Square.createNew()
-    print(Square.grid)
     
     while run:
         clock.tick(60)
@@ -31,7 +30,6 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT or not Square.grid.available:
                 run = False
-                print(Square.grid)
                 break
 
             if pygame.KEYDOWN:
@@ -81,7 +79,6 @@ def main():
 
         if all(not sq.moving for sq in Square.grid.taken) and move != temp:
             Square.createNew()
-            print(Square.grid.available)
             temp = move
         elif not all(not sq.moving for sq in Square.grid.taken) and move == temp:
             move += 1
