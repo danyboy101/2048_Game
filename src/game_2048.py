@@ -2,9 +2,7 @@ import pygame
 #import random
 
 from Square import *
-from constants import *
 
-pygame.init()
 pygame.display.set_caption("2048")
 
 def draw_board(win, s):
