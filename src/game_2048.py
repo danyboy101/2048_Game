@@ -30,20 +30,17 @@ def main():
 
         draw_board(WIN, s)
 
-        keys = pygame.key.get_pressed()
+        if pygame.KEYDOWN:
+            keys = pygame.key.get_pressed()
 
-        if keys[pygame.K_UP]:
-            s.y -= SPEED
-            pygame.display.update()
-        elif keys[pygame.K_DOWN]:
-            s.y += SPEED
-            pygame.display.update()
-        elif keys[pygame.K_LEFT]:
-            s.x -= SPEED
-            pygame.display.update()
-        elif keys[pygame.K_RIGHT]:
-            s.x += SPEED
-            pygame.display.update()
+            if keys[pygame.K_UP]:
+                s.y -= SPEED
+            elif keys[pygame.K_DOWN]:
+                s.y += SPEED
+            elif keys[pygame.K_LEFT]:
+                s.x -= SPEED
+            elif keys[pygame.K_RIGHT]:
+                s.x += SPEED
 
         pygame.display.update()
 
