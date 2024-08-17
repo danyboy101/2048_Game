@@ -8,6 +8,8 @@ class Grid:
                       [0, 0, 0, 0], 
                       [0, 0, 0, 0]]
         self.taken = []
+        is_moving = False
+        self.add(Square(5))
 
 
     def getTaken(self):
@@ -18,10 +20,15 @@ class Grid:
                 if cell != 0:
                     taken.append(cell)
         return taken
+    
+
+    def moving(self):
+        self.is_moving = all(not square.moving for square in self.taken)
 
         
     def add(self, square):
-        self.cells[square.row][square.col]
+        self.cells[square.row][square.col] = square
+        self.taken = self.getTaken()
 
 
     def remove(self, square):

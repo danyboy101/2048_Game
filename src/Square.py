@@ -9,6 +9,7 @@ class Square:
         self.row = self.pos // 4
         self.x = 100 + PADDING + (PADDING + SQUARE_SIZE) * self.col
         self.y = 100 + PADDING + (PADDING + SQUARE_SIZE) * self.row
+        self.moving = False
         self.exp = 2
 
     def draw_square(self, win):
