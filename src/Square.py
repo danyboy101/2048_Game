@@ -10,6 +10,7 @@ class Square:
         self.x = 100 + PADDING + (PADDING + SQUARE_SIZE) * self.col
         self.y = 100 + PADDING + (PADDING + SQUARE_SIZE) * self.row
         self.exp = value
+        self.moving = False
 
     def draw_square(self, win):
         pygame.draw.rect(win, COLOR_2, (self.x, self.y, SQUARE_SIZE, SQUARE_SIZE))

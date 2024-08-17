@@ -3,7 +3,7 @@ from Grid import *
 
 pygame.display.set_caption("2048")
 
-def draw_board(win, s):
+def draw_board(win, grid):
     
     win.fill(WHITE)
     pygame.draw.rect(win, DARK_GREY, (100, 100, GRID_SIZE, GRID_SIZE))
@@ -11,13 +11,14 @@ def draw_board(win, s):
         for k in range(4):
             pygame.draw.rect(win, LIGHT_GREY, (100 + PADDING + (PADDING + SQUARE_SIZE) * n, 
                                                100 + PADDING + (PADDING + SQUARE_SIZE) * k, SQUARE_SIZE, SQUARE_SIZE))
-    s.draw_square(win)
+    for square in grid.taken:
+        square.draw_square(win)
 
 def main():
     run = True
     clock = pygame.time.Clock()
     grid = Grid()
-    
+
     while run:
         clock.tick(60)
 
@@ -26,22 +27,26 @@ def main():
                 run = False
                 break
 
-        draw_board(WIN, s)
+        draw_board(WIN, grid)
 
         if pygame.KEYDOWN:
             keys = pygame.key.get_pressed()
 
             if keys[pygame.K_UP]:
-                s.y -= SPEED
+                for s in grid.taken:
+                    s.y -= SPEED
             elif keys[pygame.K_DOWN]:
-                s.y += SPEED
+                for s in grid.taken:
+                    s.y += SPEED
             elif keys[pygame.K_LEFT]:
-                s.x -= SPEED
+                for s in grid.taken:
+                    s.x -= SPEED
             elif keys[pygame.K_RIGHT]:
-                s.x += SPEED
+                for s in grid.taken:
+                    s.x += SPEED
 
         pygame.display.update()
-
+        
     pygame.quit()
 
 if __name__ == "__main__":

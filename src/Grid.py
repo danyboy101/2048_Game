@@ -10,6 +10,7 @@ class Grid:
         self.tk_free = [[], []]
         self.addRandom()
         self.addRandom()
+        is_moving = False
 
 
     def getTaken(self):
@@ -29,10 +30,15 @@ class Grid:
         randPos = random.choice(self.tk_free[1])
         initValue = random.choice([2, 4], weights=[9, 1])
         self.add(Square(randPos, initValue[0]))
+    
+
+    def moving(self):
+        self.is_moving = all(not square.moving for square in self.tk_free[0])
 
         
     def add(self, square):
-        self.cells[square.row][square.col]
+        self.cells[square.row][square.col] = square
+        self.tk_free = self.getTaken()
 
 
     def remove(self, square):
