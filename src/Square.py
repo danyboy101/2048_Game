@@ -13,7 +13,7 @@ class Square:
         self.moving = False
 
     def draw_square(self, win):
-        pygame.draw.rect(win, COLOR_2, (self.x, self.y, SQUARE_SIZE, SQUARE_SIZE))
+        pygame.draw.rect(win, COLORS[self.exp], (self.x, self.y, SQUARE_SIZE, SQUARE_SIZE))
         nb = NB_FONT.render(str(self.exp), 1, BLACK)
         win.blit(nb, (self.x + SQUARE_SIZE//2 - nb.get_rect()[2]//2, self.y + SQUARE_SIZE//2 - nb.get_rect()[3]//2))
 

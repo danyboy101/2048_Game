@@ -7,7 +7,7 @@ class Grid:
                       [0, 0, 0, 0], 
                       [0, 0, 0, 0], 
                       [0, 0, 0, 0]]
-        self.tk_free = [[], []]
+        self.tk_free = self.getTaken()
         self.addRandom()
         self.addRandom()
         is_moving = False
@@ -15,20 +15,19 @@ class Grid:
 
     def getTaken(self):
         taken = []
-        free = []
+        free = list(range(16))
         for row in range(4):
             for col in range(4):
                 cell = self.cells[row][col]
                 if cell != 0:
                     taken.append(cell)
-                else:
-                    free.append(cell)
+                    free.remove(4*row + col)
         return [taken, free]
     
 
     def addRandom(self):
         randPos = random.choice(self.tk_free[1])
-        initValue = random.choice([2, 4], weights=[9, 1])
+        initValue = random.choices([2, 4], weights=[9, 1])
         self.add(Square(randPos, initValue[0]))
     
 

@@ -11,7 +11,7 @@ def draw_board(win, grid):
         for k in range(4):
             pygame.draw.rect(win, LIGHT_GREY, (100 + PADDING + (PADDING + SQUARE_SIZE) * n, 
                                                100 + PADDING + (PADDING + SQUARE_SIZE) * k, SQUARE_SIZE, SQUARE_SIZE))
-    for square in grid.taken:
+    for square in grid.tk_free[0]:
         square.draw_square(win)
 
 def main():
@@ -33,16 +33,16 @@ def main():
             keys = pygame.key.get_pressed()
 
             if keys[pygame.K_UP]:
-                for s in grid.taken:
+                for s in grid.tk_free[0]:
                     s.y -= SPEED
             elif keys[pygame.K_DOWN]:
-                for s in grid.taken:
+                for s in grid.tk_free[0]:
                     s.y += SPEED
             elif keys[pygame.K_LEFT]:
-                for s in grid.taken:
+                for s in grid.tk_free[0]:
                     s.x -= SPEED
             elif keys[pygame.K_RIGHT]:
-                for s in grid.taken:
+                for s in grid.tk_free[0]:
                     s.x += SPEED
 
         pygame.display.update()
