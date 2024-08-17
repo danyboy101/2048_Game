@@ -1,5 +1,4 @@
 from constants import *
-import random
 
 
 class Square:
@@ -16,3 +15,7 @@ class Square:
         pygame.draw.rect(win, COLOR_2, (self.x, self.y, SQUARE_SIZE, SQUARE_SIZE))
         nb = NB_FONT.render(str(self.exp), 1, BLACK)
         win.blit(nb, (self.x + SQUARE_SIZE//2 - nb.get_rect()[2]//2, self.y + SQUARE_SIZE//2 - nb.get_rect()[3]//2))
+
+    
+    def __str__(self):
+        return "Sq" + str(self.pos)

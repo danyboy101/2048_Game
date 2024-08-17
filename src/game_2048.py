@@ -1,7 +1,5 @@
 import pygame
-#import random
-
-from Square import *
+from Grid import *
 
 pygame.display.set_caption("2048")
 
