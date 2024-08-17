@@ -16,8 +16,8 @@ def draw_board(win, s):
 def main():
     run = True
     clock = pygame.time.Clock()
-    s = Square(5)
-
+    grid = Grid()
+    
     while run:
         clock.tick(60)
 

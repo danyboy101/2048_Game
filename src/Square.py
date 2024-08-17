@@ -2,14 +2,14 @@ from constants import *
 
 
 class Square:
-    def __init__(self, pos):
+    def __init__(self, pos, value):
         self.exp = 1
         self.pos = pos
         self.col = self.pos % 4
         self.row = self.pos // 4
         self.x = 100 + PADDING + (PADDING + SQUARE_SIZE) * self.col
         self.y = 100 + PADDING + (PADDING + SQUARE_SIZE) * self.row
-        self.exp = 2
+        self.exp = value
 
     def draw_square(self, win):
         pygame.draw.rect(win, COLOR_2, (self.x, self.y, SQUARE_SIZE, SQUARE_SIZE))
