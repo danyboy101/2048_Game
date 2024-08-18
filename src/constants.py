@@ -7,7 +7,7 @@ SQUARE_SIZE = 110
 PADDING = 10
 GRID_SIZE = 4 * SQUARE_SIZE + 5 * PADDING
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
-SPEED = 8
+SPEED = 6
 FONT_SIZE = 40
 NB_FONT = pygame.font.SysFont("comicsans", FONT_SIZE)
 
